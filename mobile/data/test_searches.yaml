@@ -1,0 +1,19 @@
+searches:
+  - query: "Python programming"
+    expected_results_min: 1
+    expected_title: "Python (programming language)"
+    
+  - query: "Artificial Intelligence"
+    expected_results_min: 1
+    expected_title: "Artificial intelligence"
+    
+  - query: "Machine Learning"
+    expected_results_min: 1
+    expected_title: "Machine learning"
+
+articles:
+  - title: "Python (programming language)"
+    language: "English"
+    
+  - title: "Artificial intelligence"
+    language: "English"
