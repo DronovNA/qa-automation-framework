@@ -1,0 +1,29 @@
+# Core testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-xdist==3.5.0
+pytest-timeout==2.2.0
+
+# Playwright and browser automation
+playwright==1.40.0
+
+# Configuration
+python-dotenv==1.0.0
+pyyaml==6.0.1
+
+# Logging
+loguru==0.7.2
+
+# Reporting
+allure-pytest==2.13.2
+
+# Code quality (dev)
+black==23.12.0
+isort==5.13.2
+flake8==6.1.0
+mypy==1.7.1
+pylint==3.0.3
+
+# Utilities
+Pillow==10.1.0
+pydantic==2.5.0
