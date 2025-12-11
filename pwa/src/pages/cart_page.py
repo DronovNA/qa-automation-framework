@@ -1,6 +1,6 @@
 """Cart page object for PWA demo."""
 
-from playlist.async_api import Page
+from playwright.async_api import Page
 
 from pwa.src.base.base_page import BasePage
 from pwa.src.utils.logger import get_logger
