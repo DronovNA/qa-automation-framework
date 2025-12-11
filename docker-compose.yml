@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  appium:
+    build:
+      context: .
+      dockerfile: Dockerfile.appium
+    container_name: appium-server
+    ports:
+      - "4723:4723"
+      - "4724:4724"
+    environment:
+      - LOG_LEVEL=info
+      - NODE_PATH=/opt/homebrew/lib/node_modules
+    volumes:
+      - /dev/bus/usb:/dev/bus/usb
+    networks:
+      - automation
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4723/wd/hub/status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  automation:
+    driver: bridge

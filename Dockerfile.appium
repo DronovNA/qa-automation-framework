@@ -1,0 +1,17 @@
+FROM node:18-bullseye
+
+# Install Appium
+RUN npm install -g appium@latest
+RUN npm install -g appium-uiautomator2-driver
+RUN npm install -g appium-xcui-driver
+
+# Install additional tools
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+EXPOSE 4723 4724
+
+CMD ["appium", "--log-level", "info", "--address", "0.0.0.0"]
