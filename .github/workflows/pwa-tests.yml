@@ -57,7 +57,7 @@ jobs:
     
     - name: Upload test results
       if: always()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: pwa-test-results-${{ matrix.browser }}-${{ github.run_id }}
         path: pwa/reports/
@@ -65,7 +65,7 @@ jobs:
     
     - name: Upload screenshots
       if: always()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       with:
         name: pwa-screenshots-${{ matrix.browser }}-${{ github.run_id }}
         path: pwa/reports/screenshots/
