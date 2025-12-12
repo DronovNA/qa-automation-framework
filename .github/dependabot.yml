@@ -1,0 +1,44 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "03:00"
+    reviewers:
+      - DronovNA
+    labels:
+      - dependencies
+      - python
+    commit-message:
+      prefix: chore
+      prefix-development: chore
+      include: scope
+    allow:
+      - dependency-type: production
+      - dependency-type: development
+    ignore:
+      - dependency-name: setuptools
+        versions: ["68.*"]
+    pull-request-branch-name:
+      separator: "/"
+    rebase-strategy: auto
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "04:00"
+    reviewers:
+      - DronovNA
+    labels:
+      - ci
+      - github-actions
+    commit-message:
+      prefix: ci
+      include: scope
+    rebase-strategy: auto
+    open-pull-requests-limit: 5

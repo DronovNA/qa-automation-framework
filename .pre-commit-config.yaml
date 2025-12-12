@@ -1,7 +1,9 @@
-# Pre-commit hooks for code quality
-# Installation: pip install pre-commit
-# Setup: pre-commit install
+# Pre-commit hooks for code quality and security
+# Installation: pip install pre-commit && pre-commit install
 # Run: pre-commit run --all-files
+
+default_language_version:
+  python: python3.10
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -11,32 +13,61 @@ repos:
       - id: end-of-file-fixer
       - id: check-yaml
       - id: check-added-large-files
-        args: ['--maxkb=1000']
+        args: [--maxkb=1000]
       - id: check-json
+      - id: check-toml
       - id: check-merge-conflict
+      - id: debug-statements
+      - id: mixed-line-ending
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: [--baseline, .secrets.baseline]
+        exclude: package.lock.json
 
   - repo: https://github.com/psf/black
-    rev: 23.12.0
+    rev: 24.1.1
     hooks:
       - id: black
         language_version: python3.10
-        args: ['--line-length=100']
+        args: [--line-length=100]
 
   - repo: https://github.com/PyCQA/isort
     rev: 5.13.2
     hooks:
       - id: isort
-        args: ['--profile', 'black']
+        args: [--profile, black, --line-length=100]
 
   - repo: https://github.com/PyCQA/flake8
     rev: 6.1.0
     hooks:
       - id: flake8
-        args: ['--max-line-length=100']
+        args:
+          - --max-line-length=100
+          - --extend-ignore=E203,E501,W503,F401
+          - --max-complexity=10
+        additional_dependencies:
+          - flake8-bugbear
+          - flake8-comprehensions
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.7.1
+    rev: v1.8.0
     hooks:
       - id: mypy
-        additional_dependencies: ['types-PyYAML']
-        args: ['--ignore-missing-imports']
+        additional_dependencies:
+          - types-PyYAML
+          - types-requests
+        args:
+          - --ignore-missing-imports
+          - --no-implicit-optional
+          - --warn-return-any
+        exclude: tests/
+
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: [-c, .bandit]
+        exclude: ^tests/

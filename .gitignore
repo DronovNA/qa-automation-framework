@@ -3,6 +3,7 @@ venv/
 env/
 ENV/
 .venv/
+.ENV/
 
 # Python
 __pycache__/
@@ -22,18 +23,35 @@ parts/
 sdist/
 var/
 wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+PIPFILE.lock
 
 # Testing
 .pytest_cache/
 .coverage
+.coverage.*
 htmlcov/
 .tox/
+.nox/
 .hypothesis/
 coverage.xml
 *.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+junit.xml
+reports/
+test-results/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
 
 # Reports
 reports/
@@ -42,6 +60,7 @@ reports/
 *.json
 screenshots/
 videos/
+artifacts/
 
 # IDE
 .vscode/
@@ -53,27 +72,57 @@ videos/
 .project
 .pydevproject
 .settings/
+*.sublime-project
+*.sublime-workspace
 
-# Environment
+# Environment & Secrets
 .env
 .env.local
 .env.*.local
+.env.production.local
+.env.development.local
+.envrc
+.secrets.baseline
+secrets/
 
 # Appium
 *.log
 node_modules/
+appium.log
 
 # OS
 .DS_Store
 Thumbs.db
 .AppleDouble
 .LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+desktop.ini
 
 # Playwright
 .auth/
 .cache/
 test-results/
 playwright-report/
+.pytest_cache
 
 # Docker
 .docker/
+*.dockerfile
+docker-compose.override.yml
+
+# CI/CD
+.github/workflows/*.log
+.github/workflows/*.tmp
+
+# Miscellaneous
+*.bak
+*.tmp
+.vscode-profile
+.vscode-profile-*
+local_settings.py
+
+# Pre-commit
+.pre-commit.log
