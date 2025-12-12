@@ -20,7 +20,7 @@ jobs:
         browser: [chromium, firefox]
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -57,15 +57,17 @@ jobs:
     
     - name: Upload test results
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: pwa-test-results-${{ matrix.browser }}
+        name: pwa-test-results-${{ matrix.browser }}-${{ github.run_id }}
         path: pwa/reports/
+        if-no-files-found: warn
     
     - name: Upload screenshots
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: pwa-screenshots-${{ matrix.browser }}
+        name: pwa-screenshots-${{ matrix.browser }}-${{ github.run_id }}
         path: pwa/reports/screenshots/
+        if-no-files-found: warn
       continue-on-error: true
