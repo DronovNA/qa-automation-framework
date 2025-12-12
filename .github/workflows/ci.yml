@@ -112,14 +112,15 @@ jobs:
           check_name: Test Results
           compare_to_earlier_commit: false
 
-      - name: Upload artifacts
+      - name: Upload test artifacts
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: test-results-py${{ matrix.python-version }}
+          name: test-results-py${{ matrix.python-version }}-${{ github.run_id }}
           path: |
             mobile/reports/
             pwa/reports/
+          if-no-files-found: warn
           retention-days: 30
 
       - name: Check for secrets
