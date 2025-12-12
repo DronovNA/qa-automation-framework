@@ -1,8 +1,10 @@
 # Core testing frameworks
 pytest==7.4.3
-pytest-asyncio==0.21.1
+pytest-asyncio==0.23.1
 pytest-xdist==3.5.0
 pytest-timeout==2.2.0
+pytest-cov==4.1.0
+pytest-html==4.1.1
 
 # Mobile testing
 appium-python-client==3.1.1
@@ -19,10 +21,12 @@ loguru==0.7.2
 allure-pytest==2.13.2
 
 # Code quality
-black==23.12.0
+black==24.1.1
 isort==5.13.2
 flake8==6.1.0
-mypy==1.7.1
+flake8-bugbear==23.12.13
+flake8-comprehensions==3.14.0
+mypy==1.8.0
 
 # Utilities
 requests==2.31.0
@@ -30,5 +34,9 @@ Pillow==10.1.0
 pydantic==2.5.0
 
 # Development
-ipython==8.18.1
+ipython==8.20.0
 ipdb==0.13.13
+
+# Security
+bandit==1.7.5
+safety==2.3.5
